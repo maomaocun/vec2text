@@ -4,16 +4,16 @@ Written: 2023-03-02
 """
 import sys
 
-sys.path.append("/home/jxm3/research/retrieval/inversion")
+sys.path.append("/root/autodl-tmp/vec2text/vec2text")
 
 import torch
-from models import InversionModel, load_embedder_and_tokenizer, load_encoder_decoder
-
+from vec2text.models import InversionModel, load_embedder_and_tokenizer, load_encoder_decoder
+# import vec2text
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 def main():
-    embedder, embedder_tokenizer = load_embedder_and_tokenizer(name="dpr")
+    embedder, embedder_tokenizer = load_embedder_and_tokenizer(name="dpr",torch_dtype='float16')
     model = InversionModel(
         embedder=embedder,
         embedder_tokenizer=embedder_tokenizer,
